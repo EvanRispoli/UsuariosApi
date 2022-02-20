@@ -46,18 +46,21 @@ namespace GerenciamentoUsuarios.Controllers
             return Ok(usuario);
         }
 
-        [HttpPatch("{id}")]
+        [HttpPut("{id}")]
         public async Task<ActionResult<List<Usuario>>> Edit(Usuario request)
         {
-            var usuario = usuarios.Find(x => x.Id == request.Id);
-            if (usuario == null)
+            var dbUsuario = await _context.usuarios.FindAsync(request.Id);
+            if (dbUsuario == null)
                 return BadRequest("Usuario nao encontrado");
-            usuario.Name = request.Name;
-            usuario.Email = request.Email;  
-            usuario.Cpf=request.Cpf;
-            usuario.Senha = request.Senha;
+            
+            dbUsuario.Name = request.Name;
+            dbUsuario.Email = request.Email;  
+            dbUsuario.Cpf=request.Cpf;
+            dbUsuario.Senha = request.Senha;
 
-            return Ok(usuario);
+            await _context.SaveChangesAsync();
+
+            return Ok(await _context.usuarios.ToListAsync());
         }
 
         [HttpDelete("{id}")]
