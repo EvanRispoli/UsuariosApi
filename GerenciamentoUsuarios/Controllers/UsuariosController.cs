@@ -30,8 +30,10 @@ namespace GerenciamentoUsuarios.Controllers
         [HttpPost]
         public async Task<ActionResult<List<Usuario>>> AddUsuario(Usuario usuario)
         {
-            usuarios.Add(usuario);
-            return Ok(usuarios);
+            _context.usuarios.Add(usuario);
+            await _context.SaveChangesAsync();
+
+            return Ok(await _context.usuarios.ToListAsync());
         }
 
 
