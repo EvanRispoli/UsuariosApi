@@ -1,6 +1,6 @@
-  <h1> Desafio Backend</h1>
+# Desafio Backend
 
-  <h2>Proposta</h2>
+## Proposta
   <p>O objetivo desse desafio é a criação de uma API REST para um aplicativo de
     gerenciamento de usuários, com base no conceito CRUD (Create, Read, Update, Delete).
     Não é esperado que você saiba todos os códigos de cabeça, mas é esperado que você
