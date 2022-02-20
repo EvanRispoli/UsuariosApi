@@ -1,6 +1,6 @@
 # Desafio Backend
 
-## Proposta
+### Proposta
 
   O objetivo desse desafio é a criação de uma API REST para um aplicativo de
   gerenciamento de usuários, com base no conceito CRUD (Create, Read, Update, Delete).
@@ -10,9 +10,9 @@
 
 
 
- ## Requisitos
+ ### Requisitos
   Segue abaixo o resumo dos requisitos que devem ser desenvolvidos:
-  ###Cadastro de um novo usuário
+###Cadastro de um novo usuário
     A API deve receber o nome, e-mail e senha, CPF e data de nascimento do usuário para
     realizar a criação do usuário. Todos obrigatórios.
     Será um diferencial conseguir armazenar a senha em forma de hash. Lembre-se,
@@ -21,7 +21,7 @@
     Não deve permitir criar dois usuários com o mesmo e-mail, nem o mesmo CPF, senão
     isso daria uma boa confusão.
     
-  ###Listagem de usuários
+###Listagem de usuários
     A API deve ser capaz de retornar a lista de todos os usuários cadastrados previamente.
 Além disso, caso seja chamado o método de listagem, e não existir nenhum usuário cadastrado,
 deve-se retornar o HTTP Code correto, com mensagem de tratamento.
