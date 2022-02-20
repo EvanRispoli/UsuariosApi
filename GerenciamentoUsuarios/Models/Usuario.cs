@@ -17,6 +17,6 @@ namespace GerenciamentoUsuarios.Models
         [Required, MinLength(11),MaxLength(11)]
         public string Cpf { get; set; }
         [Required]
-        public DateTime DataNasc { get; set; };
+        public DateTime DataNasc { get; set; }
     }
 }
