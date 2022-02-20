@@ -38,7 +38,7 @@ namespace GerenciamentoUsuarios.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<List<Usuario>>> Get(int id)
         {
-            var usuario = usuarios.Find(x => x.Id == id);
+            var usuario = await _context.usuarios.FindAsync(id);
             if (usuario == null)
                 return BadRequest("Usuario nao encontrado");
             return Ok(usuario);
