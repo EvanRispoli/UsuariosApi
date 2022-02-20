@@ -25,5 +25,26 @@ Segue abaixo o resumo dos requisitos que devem ser desenvolvidos:
 - [x] Caso seja informado um e-mail e/ou um CPF na alteração, que já esteja em uso por outro usuário cadastrado, deve barrar a alteração, e devolver mensagem adequada.
 - [x] Em caso de sucesso, informar que a alteração foi realizada, e retornar os dados atualizados do usuário
 
+- ### Exclusão de um usuário por Id
+- [x] A API deve possuir um método de exclusão de um usuário previamente cadastrado, passando como parâmetro o Id de identificação dele. Lembre-se, Id inválido, deve retornar o tratamento adequado.
+- [x]Após a exclusão, deve-se retornar apenas o HTTP Code de sucesso, com a mensagem de exclusão do usuário.
+
+- Disponibilização da documentação da API utilizando o Swagger
+
+O Swagger é um framework composto por diversas ferramentas que, independentemente da linguagem, auxilia a descrição, consumo e visualização de serviços de uma API REST.
+-[x] A API REST desenvolvida deve retornar os métodos documentos via Swagger. Lembrese de usar o método HTTP correto para cada método criado.
+
+## Queries T-SQL
+
+Dado os métodos API acima (Criação, listagem, listagem por Id, Alteração e Exclusão),crie queries T-SQL representando cada um deles.
+-[x] Disponibilize todos os scripts em uma pasta chamada “Database”.
+-[x] Lembre-se de utilizar padrões de desenvolvimento limpo no seu script.
+
+## Requisitos técnicos
+
+- Plataforma: a API deve ser desenvolvida em C# com .NET Core 2.0 (ou superior).
+- Banco de dados: pode ser utilizado banco de dados em memória, por exemplo o Entity Framework Core, através do provedor InMemory, listas em memória, bem como pode ser utilizado SQL-Server. Em caso de utilização de banco de dados relacional, disponibilizar os scripts das tabelas no código fonte.
+- Código fonte: o código fonte deve ser disponibilizado no GitHub pessoal até a data acordada. Lembre-se de deixar seu repositório público, caso contrário estará desclassificado.
+
 
 
