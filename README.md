@@ -9,4 +9,5 @@ O objetivo desse desafio é a criação de uma API REST para um aplicativo de ge
 Segue abaixo o resumo dos requisitos que devem ser desenvolvidos:
 
 - Cadastro de um novo usuário
+  ➡️  A API deve receber o nome, e-mail e senha, CPF e data de nascimento do usuário para realizar a criação do usuário. Todos obrigatórios.
 
