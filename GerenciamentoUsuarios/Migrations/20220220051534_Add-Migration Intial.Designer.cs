@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GerenciamentoUsuarios.Migrations
 {
     [DbContext(typeof(_DbContext))]
-    [Migration("20220220015201_MigracaoInicial")]
-    partial class MigracaoInicial
+    [Migration("20220220051534_Add-Migration Intial")]
+    partial class AddMigrationIntial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -47,6 +47,12 @@ namespace GerenciamentoUsuarios.Migrations
                         .HasColumnType("varchar(10)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Cpf")
+                        .IsUnique();
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.ToTable("Usuarios");
                 });

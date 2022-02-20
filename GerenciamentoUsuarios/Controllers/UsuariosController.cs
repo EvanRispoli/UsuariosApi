@@ -10,10 +10,6 @@ namespace GerenciamentoUsuarios.Controllers
     [ApiController]
     public class UsuariosController : ControllerBase
     {
-        private static List<Usuario> usuarios = new List<Usuario>
-        {
-        };
-
         private readonly _DbContext _context;
 
         public UsuariosController(_DbContext context)
@@ -22,15 +18,31 @@ namespace GerenciamentoUsuarios.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Usuario>>> Get()
+        public async Task<IActionResult> Index()
         {
+            if (!_context.usuarios.Any())
+                return Ok("Não há usuários cadastrados");
+
             return Ok(await _context.usuarios.ToListAsync());
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<Usuario>>> AddUsuario(Usuario usuario)
+        public async Task<IActionResult> PostAsync(Usuario usuario)
         {
+            var verificaCpf = _context.usuarios.FirstOrDefault(option => option.Cpf == usuario.Cpf);
+            var verificarEmail = _context.usuarios.FirstOrDefault(option => option.Email==usuario.Email);
             _context.usuarios.Add(usuario);
+
+            if (verificaCpf != null)
+            {
+                return Conflict("Este CPF já está cadastrado");
+            }
+            else if (verificarEmail != null)
+            {
+                return Conflict("Este E-mail já está cadastrado");
+            }
+                
+
             await _context.SaveChangesAsync();
 
             return Ok(await _context.usuarios.ToListAsync());
@@ -38,7 +50,7 @@ namespace GerenciamentoUsuarios.Controllers
 
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<List<Usuario>>> Get(int id)
+        public async Task<IActionResult> GetById(int id)
         {
             var usuario = await _context.usuarios.FindAsync(id);
             if (usuario == null)
@@ -46,12 +58,12 @@ namespace GerenciamentoUsuarios.Controllers
             return Ok(usuario);
         }
 
-        [HttpPut("{id}")]
-        public async Task<ActionResult<List<Usuario>>> Edit(Usuario request)
+        [HttpPatch("{id}")]
+        public async Task<ActionResult<List<Usuario>>> Edit(int id,Usuario request)
         {
-            var dbUsuario = await _context.usuarios.FindAsync(request.Id);
-            if (dbUsuario == null)
-                return BadRequest("Usuario nao encontrado");
+            var dbUsuario = await _context.usuarios.FindAsync(id);
+            if (dbUsuario is null)
+                return NotFound("Usuario nao encontrado.");
             
             dbUsuario.Name = request.Name;
             dbUsuario.Email = request.Email;  
@@ -60,7 +72,7 @@ namespace GerenciamentoUsuarios.Controllers
 
             await _context.SaveChangesAsync();
 
-            return Ok(await _context.usuarios.ToListAsync());
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
@@ -71,7 +83,7 @@ namespace GerenciamentoUsuarios.Controllers
                 return BadRequest("Usuario nao encontrado");
             _context.usuarios.Remove(dbUsuario);
             await _context.SaveChangesAsync();  
-            return Ok(await _context.usuarios.ToListAsync());
+            return Ok("Exclusão realizada com sucesso");
         }
 
 

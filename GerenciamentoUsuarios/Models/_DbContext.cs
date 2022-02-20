@@ -9,6 +9,12 @@ namespace GerenciamentoUsuarios.Models
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+
+            builder.Entity<Usuario>(entity => {
+                entity.HasIndex(e => e.Email).IsUnique();
+                entity.HasIndex(e => e.Cpf).IsUnique();
+            });
+            
             base.OnModelCreating(builder);
         }
 

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GerenciamentoUsuarios.Migrations
 {
-    public partial class MigracaoInicial : Migration
+    public partial class AddMigrationIntial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -32,6 +32,18 @@ namespace GerenciamentoUsuarios.Migrations
                     table.PrimaryKey("PK_Usuarios", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Usuarios_Cpf",
+                table: "Usuarios",
+                column: "Cpf",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Usuarios_Email",
+                table: "Usuarios",
+                column: "Email",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

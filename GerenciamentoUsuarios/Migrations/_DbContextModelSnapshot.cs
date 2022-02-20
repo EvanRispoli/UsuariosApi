@@ -46,6 +46,12 @@ namespace GerenciamentoUsuarios.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Cpf")
+                        .IsUnique();
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
                     b.ToTable("Usuarios");
                 });
 #pragma warning restore 612, 618
