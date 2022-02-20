@@ -66,11 +66,12 @@ namespace GerenciamentoUsuarios.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<List<Usuario>>> Delete(int id)
         {
-            var usuario = usuarios.Find(x => x.Id == id);
-            if (usuario == null)
+            var dbUsuario = await _context.usuarios.FindAsync(id);
+            if (dbUsuario == null)
                 return BadRequest("Usuario nao encontrado");
-            usuarios.Remove(usuario);
-            return Ok(usuarios);
+            _context.usuarios.Remove(dbUsuario);
+            await _context.SaveChangesAsync();  
+            return Ok(await _context.usuarios.ToListAsync());
         }
 
 
