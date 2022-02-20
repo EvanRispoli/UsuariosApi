@@ -1,5 +1,6 @@
 ﻿using GerenciamentoUsuarios.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,40 +12,19 @@ namespace GerenciamentoUsuarios.Controllers
     {
         private static List<Usuario> usuarios = new List<Usuario>
         {
-            new Usuario
-            {
-                Id = 1,
-                Name = "Joe",
-                Cpf = "12345678910",
-                Senha = "1234567890",
-                Email ="Joe@joe.com"
-            },
-
-            new Usuario
-            {
-                Id = 2,
-                Name = "Mathew",
-                Cpf = "12345678910",
-                Senha = "1234567890",
-                Email ="mathew@joe.com"
-            },
-
-            new Usuario
-            {
-                Id = 3,
-                Name = "Mark",
-                Cpf = "12345678910",
-                Senha = "1234567890",
-                Email ="mark@joe.com"
-            }
         };
 
+        private readonly _DbContext _context;
 
-       
+        public UsuariosController(_DbContext context)
+        {
+            _context = context;
+        }
+
         [HttpGet]
         public async Task<ActionResult<List<Usuario>>> Get()
         {
-            return Ok(usuarios);
+            return Ok(await _context.usuarios.ToListAsync());
         }
 
         [HttpPost]
@@ -91,36 +71,5 @@ namespace GerenciamentoUsuarios.Controllers
 
 
 
-        /*public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-        
-
-        // GET api/<UsuariosController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<UsuariosController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<UsuariosController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<UsuariosController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
-        */
     }
 }
