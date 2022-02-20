@@ -12,6 +12,6 @@ namespace GerenciamentoUsuarios.Models
             base.OnModelCreating(builder);
         }
 
-        public DbSet<Usuarios> usuarios { get; set; }
+        public DbSet<Usuario> usuarios { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GerenciamentoUsuarios.Models;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,12 +9,49 @@ namespace GerenciamentoUsuarios.Controllers
     [ApiController]
     public class UsuariosController : ControllerBase
     {
-        // GET: api/<UsuariosController>
+        private static List<Usuario> usuarios = new List<Usuario>
+        {
+            new Usuario
+            {
+                Id = 1,
+                Name = "Joe",
+                Cpf = "12345678910",
+                Senha = "1234567890",
+                Email ="Joe@joe.com"
+            }
+        };
+
+
+       
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<ActionResult<List<Usuario>>> Get()
+        {
+            return Ok(usuarios);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<List<Usuario>>> AddUsuario(Usuario usuario)
+        {
+            usuarios.Add(usuario);
+            return Ok(usuarios);
+        }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<List<Usuario>>> Get(int id)
+        {
+            var usuario = usuarios.Find(x => x.Id == id);
+            if (usuario == null)
+                return BadRequest("Usuario nao encontrado");
+            return Ok(usuarios);
+        }
+
+
+
+
+        /*public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
+        
 
         // GET api/<UsuariosController>/5
         [HttpGet("{id}")]
@@ -39,5 +77,6 @@ namespace GerenciamentoUsuarios.Controllers
         public void Delete(int id)
         {
         }
+        */
     }
 }
