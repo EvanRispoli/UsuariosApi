@@ -23,8 +23,7 @@ Segue abaixo o resumo dos requisitos que devem ser desenvolvidos:
 - ### Atualização de informações do usuário por Id
 - [x] A API deve possuir um método para atualização dos dados de um usuário previamente cadastrado, passando como parâmetro o Id de identificação dele. Lembre-se, Id inválido, deve retornar o tratamento adequado.
 - [x] Caso seja informado um e-mail e/ou um CPF na alteração, que já esteja em uso por outro usuário cadastrado, deve barrar a alteração, e devolver mensagem adequada.
-- [x] Em caso de sucesso, informar que a alteração foi realizada, e retornar os dados
-atualizados do usuário
+- [x] Em caso de sucesso, informar que a alteração foi realizada, e retornar os dados atualizados do usuário
 
 
 
