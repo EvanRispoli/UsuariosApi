@@ -8,15 +8,15 @@ namespace GerenciamentoUsuarios.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required,MaxLength(120),]
+        [Required]
         public string Name { get; set; }
-        [Required, MaxLength(50)]
+        [Required]
         public string Email { get; set; }
-        [Required, MaxLength(10),]
+        [Required]
         public string Senha { get; set; }
-        [Required, MinLength(11),MaxLength(11)]
+        [Required]
         public string Cpf { get; set; }
         [Required]
-        public DateTime DataNasc { get; set; }
+        public string DataNasc { get; set; }
     }
 }

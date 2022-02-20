@@ -49,7 +49,7 @@ namespace GerenciamentoUsuarios.Controllers
 
             await _context.SaveChangesAsync();
 
-            return Ok(await _context.usuarios.ToListAsync());
+            return Ok();
         }
 
 
@@ -62,7 +62,7 @@ namespace GerenciamentoUsuarios.Controllers
             return Ok(usuario);
         }
 
-        [HttpPatch("{id}")]
+        [HttpPut("{id}")]
         public async Task<ActionResult<List<Usuario>>> Edit(int id,Usuario request)
         {
             var dbUsuario = await _context.usuarios.FindAsync(id);
@@ -72,12 +72,26 @@ namespace GerenciamentoUsuarios.Controllers
             dbUsuario.Name = request.Name;
             dbUsuario.Email = request.Email;  
             dbUsuario.Cpf=request.Cpf;
-            dbUsuario.Senha = request.Senha;
-            dbUsuario.DataNasc = request.DataNasc;  
+            dbUsuario.Senha = Encrypt.HashSenha(request.Senha);
+            dbUsuario.DataNasc = request.DataNasc;
+
+            var verificaCpf = _context.usuarios.FirstOrDefault(option => option.Cpf == request.Cpf);
+            var verificarEmail = _context.usuarios.FirstOrDefault(option => option.Email == request.Email);
+
+
+            if (verificaCpf != null)
+            {
+                return Conflict("Este CPF já está cadastrado");
+            }
+            else if (verificarEmail != null)
+            {
+                return Conflict("Este E-mail já está cadastrado");
+            }
+
 
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok(dbUsuario);
         }
 
         [HttpDelete("{id}")]

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GerenciamentoUsuarios.Migrations
 {
     [DbContext(typeof(_DbContext))]
-    [Migration("20220220051534_Add-Migration Intial")]
-    partial class AddMigrationIntial
+    [Migration("20220220085952_InitialDb")]
+    partial class InitialDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,23 +28,23 @@ namespace GerenciamentoUsuarios.Migrations
 
                     b.Property<string>("Cpf")
                         .IsRequired()
-                        .HasMaxLength(11)
-                        .HasColumnType("varchar(11)");
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("DataNasc")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(120)
-                        .HasColumnType("varchar(120)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Senha")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("varchar(10)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
