@@ -1,6 +1,7 @@
 ﻿using GerenciamentoUsuarios.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using GerenciamentoUsuarios.Criptografia;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -31,7 +32,7 @@ namespace GerenciamentoUsuarios.Controllers
         {
             var verificaCpf = _context.usuarios.FirstOrDefault(option => option.Cpf == usuario.Cpf);
             var verificarEmail = _context.usuarios.FirstOrDefault(option => option.Email==usuario.Email);
-            _context.usuarios.Add(usuario);
+            
 
             if (verificaCpf != null)
             {
@@ -41,7 +42,10 @@ namespace GerenciamentoUsuarios.Controllers
             {
                 return Conflict("Este E-mail já está cadastrado");
             }
-                
+
+            usuario.Senha = Encrypt.HashSenha(usuario.Senha);
+
+            _context.usuarios.Add(usuario);
 
             await _context.SaveChangesAsync();
 
@@ -69,6 +73,7 @@ namespace GerenciamentoUsuarios.Controllers
             dbUsuario.Email = request.Email;  
             dbUsuario.Cpf=request.Cpf;
             dbUsuario.Senha = request.Senha;
+            dbUsuario.DataNasc = request.DataNasc;  
 
             await _context.SaveChangesAsync();
 
