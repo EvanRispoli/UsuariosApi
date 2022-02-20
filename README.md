@@ -87,7 +87,7 @@
       <p>: a API deve ser desenvolvida em C# com .NET Core 2.0 (ou superior).</p>
     
 
-    <li>
+    - 
       <h4>Banco de dados:</h4>
       <p>pode ser utilizado banco de dados em memória, por exemplo o Entity
         Framework Core, através do provedor InMemory, listas em memória, bem como pode ser
@@ -95,12 +95,11 @@
         das tabelas no código fonte.</p>
     
 
-    <li>
-      <h4>Código fonte:</h4>
+    - ####Código fonte:</h4>
       <p>
         o código fonte deve ser disponibilizado no GitHub pessoal até a data acordada.
         Lembre-se de deixar seu repositório público, caso contrário estará desclassificado.
       </p>
       <p>Commits feitos depois do prazo final, serão desconsiderados.</p>
-    </li>
+    
   
