@@ -10,10 +10,9 @@
 
   <h2> Requisitos</h2>
   <p>Segue abaixo o resumo dos requisitos que devem ser desenvolvidos:</p>
-  <ul>
+  
 
-    <li>
-      <h3>Cadastro de um novo usuário</h3>
+    - <h3>Cadastro de um novo usuário</h3>
       <p>A API deve receber o nome, e-mail e senha, CPF e data de nascimento do usuário para
         realizar a criação do usuário. Todos obrigatórios.
         Será um diferencial conseguir armazenar a senha em forma de hash. Lembre-se,
