@@ -95,7 +95,7 @@
         das tabelas no código fonte.</p>
     
 
-    - ####Código fonte:</h4>
+    - ####Código fonte:
       <p>
         o código fonte deve ser disponibilizado no GitHub pessoal até a data acordada.
         Lembre-se de deixar seu repositório público, caso contrário estará desclassificado.
