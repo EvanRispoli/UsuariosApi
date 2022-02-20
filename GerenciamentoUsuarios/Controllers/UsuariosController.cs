@@ -35,13 +35,15 @@ namespace GerenciamentoUsuarios.Controllers
             usuarios.Add(usuario);
             return Ok(usuarios);
         }
+
+
         [HttpGet("{id}")]
         public async Task<ActionResult<List<Usuario>>> Get(int id)
         {
             var usuario = usuarios.Find(x => x.Id == id);
             if (usuario == null)
                 return BadRequest("Usuario nao encontrado");
-            return Ok(usuarios);
+            return Ok(usuario);
         }
 
 
