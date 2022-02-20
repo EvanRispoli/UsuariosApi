@@ -18,7 +18,7 @@ namespace GerenciamentoUsuarios.Migrations
                 .HasAnnotation("ProductVersion", "6.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("GerenciamentoUsuarios.Models.Usuarios", b =>
+            modelBuilder.Entity("GerenciamentoUsuarios.Models.Usuario", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

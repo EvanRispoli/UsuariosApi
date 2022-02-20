@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GerenciamentoUsuarios.Migrations
 {
     [DbContext(typeof(_DbContext))]
-    [Migration("20220219222850_SecondMigration")]
-    partial class SecondMigration
+    [Migration("20220220015201_MigracaoInicial")]
+    partial class MigracaoInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,7 +20,7 @@ namespace GerenciamentoUsuarios.Migrations
                 .HasAnnotation("ProductVersion", "6.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("GerenciamentoUsuarios.Models.Usuarios", b =>
+            modelBuilder.Entity("GerenciamentoUsuarios.Models.Usuario", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

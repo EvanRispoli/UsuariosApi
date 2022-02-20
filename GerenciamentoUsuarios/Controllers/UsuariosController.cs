@@ -18,6 +18,24 @@ namespace GerenciamentoUsuarios.Controllers
                 Cpf = "12345678910",
                 Senha = "1234567890",
                 Email ="Joe@joe.com"
+            },
+
+            new Usuario
+            {
+                Id = 2,
+                Name = "Mathew",
+                Cpf = "12345678910",
+                Senha = "1234567890",
+                Email ="mathew@joe.com"
+            },
+
+            new Usuario
+            {
+                Id = 3,
+                Name = "Mark",
+                Cpf = "12345678910",
+                Senha = "1234567890",
+                Email ="mark@joe.com"
             }
         };
 
@@ -44,6 +62,30 @@ namespace GerenciamentoUsuarios.Controllers
             if (usuario == null)
                 return BadRequest("Usuario nao encontrado");
             return Ok(usuario);
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<ActionResult<List<Usuario>>> Edit(Usuario request)
+        {
+            var usuario = usuarios.Find(x => x.Id == request.Id);
+            if (usuario == null)
+                return BadRequest("Usuario nao encontrado");
+            usuario.Name = request.Name;
+            usuario.Email = request.Email;  
+            usuario.Cpf=request.Cpf;
+            usuario.Senha = request.Senha;
+
+            return Ok(usuario);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<List<Usuario>>> Delete(int id)
+        {
+            var usuario = usuarios.Find(x => x.Id == id);
+            if (usuario == null)
+                return BadRequest("Usuario nao encontrado");
+            usuarios.Remove(usuario);
+            return Ok(usuarios);
         }
 
 
