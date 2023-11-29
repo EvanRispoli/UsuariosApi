@@ -10,7 +10,7 @@ Segue abaixo o resumo dos requisitos que devem ser desenvolvidos:
 
 - ### Cadastro de um novo usuário
 - [x] A API deve receber o nome, e-mail e senha, CPF e data de nascimento do usuário para realizar a criação do usuário. Todos obrigatórios.
-- [x] Será um diferencial conseguir armazenar a senha em forma de hash. Lembre-se,segurança é muito importante!
+- [x] Armazenar a senha em forma de hash. Lembre-se,segurança é muito importante!
 - [x] Deve ser gerado automaticamente um ID para o usuário.
 - [x] Não deve permitir criar dois usuários com o mesmo e-mail, nem o mesmo CPF, senão isso daria uma boa confusão.
 

@@ -62,37 +62,46 @@ namespace GerenciamentoUsuarios.Controllers
             return Ok(usuario);
         }
 
+        
         [HttpPut("{id}")]
-        public async Task<ActionResult<List<Usuario>>> Edit(int id,Usuario request)
+        public async Task<ActionResult<List<Usuario>>> Edit(int id, Usuario request)
         {
-            var dbUsuario = await _context.usuarios.FindAsync(id);
-            if (dbUsuario is null)
-                return NotFound("Usuario nao encontrado.");
-            
-            dbUsuario.Name = request.Name;
-            dbUsuario.Email = request.Email;  
-            dbUsuario.Cpf=request.Cpf;
-            dbUsuario.Senha = Encrypt.HashSenha(request.Senha);
-            dbUsuario.DataNasc = request.DataNasc;
-
-            var verificaCpf = _context.usuarios.FirstOrDefault(option => option.Cpf == request.Cpf);
-            var verificarEmail = _context.usuarios.FirstOrDefault(option => option.Email == request.Email);
-
-
-            if (verificaCpf != null)
+            try
             {
-                return Conflict("Este CPF já está cadastrado");
+                var dbUsuario = await _context.usuarios.FindAsync(id);
+                if (dbUsuario is null)
+                    return NotFound("Usuário não encontrado.");
+
+                // Verifica se o e-mail foi alterado
+                if (dbUsuario.Email != request.Email)
+                {
+                    // Verifica se o novo e-mail já existe na base de dados
+                    var verificaEmail = _context.usuarios.FirstOrDefault(option => option.Email == request.Email);
+                    if (verificaEmail != null)
+                    {
+                        return Conflict("Este e-mail já está cadastrado");
+                    }
+                }
+
+                // Atualiza os outros campos
+                dbUsuario.Name = request.Name;
+                dbUsuario.Email = request.Email;
+                dbUsuario.Cpf = request.Cpf;
+                dbUsuario.Senha = Encrypt.HashSenha(request.Senha);
+                dbUsuario.DataNasc = request.DataNasc;
+
+                await _context.SaveChangesAsync();
+
+                return Ok(dbUsuario);
             }
-            else if (verificarEmail != null)
+            catch (Exception ex)
             {
-                return Conflict("Este E-mail já está cadastrado");
+                // Log do erro ou retorno de uma mensagem específica
+                return StatusCode(500, "Erro interno do servidor: " + ex.Message);
             }
-
-
-            await _context.SaveChangesAsync();
-
-            return Ok(dbUsuario);
         }
+
+
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<List<Usuario>>> Delete(int id)
