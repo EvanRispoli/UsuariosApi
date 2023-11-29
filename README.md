@@ -2,7 +2,7 @@
 
 ## Proposta
 
-O objetivo desse desafio é a criação de uma API REST para um aplicativo de gerenciamento de usuários, com base no conceito CRUD (Create, Read, Update, Delete). Não é esperado que você saiba todos os códigos de cabeça, mas é esperado que você seja capaz de encontrar soluções por meio das documentações oficiais ou por meio de fóruns ou artigos.
+O objetivo desse projeto é a criação de uma API REST para um aplicativo de gerenciamento de usuários, com base no conceito CRUD (Create, Read, Update, Delete). 
 
 ## Requisitos
 
@@ -44,7 +44,7 @@ Dado os métodos API acima (Criação, listagem, listagem por Id, Alteração e 
 
 - Plataforma: a API deve ser desenvolvida em C# com .NET Core 2.0 (ou superior).
 - Banco de dados: pode ser utilizado banco de dados em memória, por exemplo o Entity Framework Core, através do provedor InMemory, listas em memória, bem como pode ser utilizado SQL-Server. Em caso de utilização de banco de dados relacional, disponibilizar os scripts das tabelas no código fonte.
-- Código fonte: o código fonte deve ser disponibilizado no GitHub pessoal até a data acordada. Lembre-se de deixar seu repositório público, caso contrário estará desclassificado.
+
 
 
 
